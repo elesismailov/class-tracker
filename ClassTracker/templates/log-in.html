@@ -1,0 +1,18 @@
+
+{% extends 'base.html' %}
+
+{% block title %}
+Teacher Login Page
+{% endblock %}
+
+{% block content %}
+<h2>Teacher Log In</h2>
+{% if error %}
+<p><strong>Invalid phone number or password.</strong></p>
+{% endif %}
+<form method="post">
+  {% csrf_token %}
+  {{ form.as_p }}
+  <button type="submit">Login</button>
+</form>
+{% endblock %}
