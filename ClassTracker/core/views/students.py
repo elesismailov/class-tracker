@@ -9,6 +9,8 @@ from django.shortcuts import render, redirect
 from core.models import Classroom, Student
 from core.forms import *
 
+from core.utils.email import notify_student
+
 
 def students_list(request):
     if request.method == 'GET':
@@ -29,7 +31,9 @@ def create_students(request):
         form = StudentChangeForm(request.POST)
         if form.is_valid():
             student = form.save()
-            print(student)
+            
+            notify_student(student, subject='Welcome Letter', body="Welcome to our class!")
+
             return render(request, 'students-by-id.html', {'data': {'student': student}})
         return render(request, 'students-new.html', {'data': {'form': form}})
 

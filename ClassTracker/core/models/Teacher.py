@@ -39,11 +39,9 @@ class CustomUserManager(BaseUserManager):
 
 class Teacher(AbstractUser):
 
-    first_name = models.CharField(max_length=20)
-    second_name = models.CharField(max_length=20)
-
+    first_name   = models.CharField(max_length=20)
+    second_name  = models.CharField(max_length=20)
     phone_number = models.CharField(max_length=20, unique=True)
-
     subject_name = models.CharField(max_length=50)
 
 
