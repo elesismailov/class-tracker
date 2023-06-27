@@ -9,6 +9,7 @@ Teacher Home Page
 {% if user.is_authenticated %}
   <p><a href="{% url 'log-out' %}">Log Out</a></p>
   <p><a href="{% url 'students' %}">Students</a></p>
+  <p><a href="{% url 'classrooms-all' %}">Classrooms</a></p>
 {% else %}
   <a href="{% url 'log-in' %}">Log In</a> |
   <a href="{% url 'sign-up' %}">Sign Up</a>

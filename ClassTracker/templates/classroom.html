@@ -1,0 +1,29 @@
+
+{% extends 'base.html' %}
+{% block title %}
+Classroom Students Page
+{% endblock %}
+
+{% block content %}
+<h1>Classroom:</h1>
+{% if user.is_authenticated and data %}
+
+    <p><a href="{% url 'log-out' %}">Log Out</a></p>
+    <p><b>Classroom name - {{data.classroom.name}}</b></p>
+
+    <h2>List of students:</h2>
+    {% if data.students %}
+        <ul>{% for s in data.students %}
+            <li><a href="{% url 'students-by-id' s.id %}">Student {{ s.name }} {{ s.email }} </a></li>
+        {% endfor %}
+        </ul>
+    {% else %}
+        <p><b>No students in this classroom yet...</b></p>
+    {% endif %}
+
+{% else %}
+    <p><b>Please log in or sign up first:</b></p>
+    <a href="{% url 'log-in' %}">Log In</a> |
+    <a href="{% url 'sign-up' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

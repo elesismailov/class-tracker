@@ -61,6 +61,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            # 'views': [
+            #     'core.views.classrooms_list',
+            # ]
         },
     },
 
