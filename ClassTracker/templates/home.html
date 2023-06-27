@@ -7,11 +7,8 @@ Teacher Home Page
 {% block content %}
 <h1>Home Page</h1>
 {% if user.is_authenticated %}
-  <p><a href="{% url 'log-out' %}">Log Out</a></p>
-  <p><a href="{% url 'search' %}">Search</a></p>
-  <p><a href="{% url 'create-students' %}">Create Student</a></p>
-  <p><a href="{% url 'create-classrooms' %}">Create Classroom</a></p>
-  <hr>
+
+  {%  include 'links.html' %}
 
   <p><a href="{% url 'students' %}">Students</a></p>
   <p><a href="{% url 'classrooms-all' %}">Classrooms</a></p>

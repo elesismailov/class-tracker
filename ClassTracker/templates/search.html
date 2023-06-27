@@ -1,18 +1,32 @@
 
 {% extends 'base.html' %}
 {% block title %}
-Teacher Home Page
+Search Page
 {% endblock %}
 
 {% block content %}
-<h1>Home Page</h1>
+<h1>Search</h1>
 {% if user.is_authenticated %}
-  <p><a href="{% url 'log-out' %}">Log Out</a></p>
-  <p><a href="{% url 'create-students' %}">Create Student</a></p>
-  <p><a href="{% url 'create-classrooms' %}">Create Classroom</a></p>
-  <hr>
-  <p><a href="{% url 'students' %}">Students</a></p>
-  <p><a href="{% url 'classrooms-all' %}">Classrooms</a></p>
+
+    {%  include 'links.html' %}
+
+    <form method="post">
+        {% csrf_token %}
+        <input type="text" value='{{ data.q }}' name="query" placeholder="John Doe">
+        <button type="submit">Search...</button>
+    </form>
+
+    {% if data.message %}
+        <p style="color: #636363">{{data.message}}</p>
+    {% elif data.students %}
+        <p style="color: #636363">We got a match! ⬇️</p>
+        <ul>{% for s in data.students %}
+            <li><a href="{% url 'students-by-id' s.id %}">{{ s.name }} - {{ s.email }} </a></li>
+        {% endfor %}
+        </ul>
+    {% endif %}
+
+
 {% else %}
   <a href="{% url 'log-in' %}">Log In</a> |
   <a href="{% url 'sign-up' %}">Sign Up</a>

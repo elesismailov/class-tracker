@@ -8,12 +8,8 @@ Create Classroom Page
 <h1>Create Classroom</h1>
 {% if user.is_authenticated and data %}
 
+    {%  include 'links.html' %}
 
-<p><a href="{% url 'home' %}">Home</a></p>
-<p><a href="{% url 'log-out' %}">Log Out</a></p>
-<p><a href="{% url 'create-students' %}">Create Student</a></p>
-<p><a href="{% url 'create-classrooms' %}">Create Classroom</a></p>
-<hr>
 
     <form method="post">
         {% csrf_token %}

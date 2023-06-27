@@ -8,11 +8,7 @@ Classroom Students Page
 <h1>Student Info</h1>
 {% if user.is_authenticated and data %}
 
-    <p><a href="{% url 'home' %}">Home</a></p>
-    <p><a href="{% url 'log-out' %}">Log Out</a></p>
-    <p><a href="{% url 'create-students' %}">Create Student</a></p>
-    <p><a href="{% url 'create-classrooms' %}">Create Classroom</a></p>
-    <hr>
+    {%  include 'links.html' %}
 
     {% if data.message %}
         <p style="color: #6ef231">{{data.message}}</p>
