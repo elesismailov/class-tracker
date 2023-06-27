@@ -13,8 +13,8 @@ urlpatterns = [
     path('classrooms-all/', classrooms_list, name='classrooms-all'),
     path('classrooms-new/', create_classrooms, name='create-classrooms'),
 
-    path('students-new/', create_students, name='create-students'),
     path('students/', students_list, name='students'),
+    path('students-new/', create_students, name='create-students'),
     path('students/<str:id>/', students_by_id, name='students-by-id'),
     path('students/<str:id>/edit/', edit_students_by_id, name='edit-students-by-id'),
     path('students/<str:id>/delete/', delete_students_by_id, name='delete-students-by-id'),

@@ -7,8 +7,23 @@ Teacher's Students Page
 {% block content %}
 <h1>Students List</h1>
 {% if user.is_authenticated %}
+  <p><a href="{% url 'home' %}">Home</a></p>
   <p><a href="{% url 'log-out' %}">Log Out</a></p>
-  {{ classrooms }}
+  <p><a href="{% url 'create-students' %}">Create Student</a></p>
+  <p><a href="{% url 'create-classrooms' %}">Create Classroom</a></p>
+  <hr>
+
+  {% if data %}
+    <ul>
+      {% for student in data.students %}
+          <li><a href="{% url 'students-by-id' student.id %}">{{ student.classroom.name }} - {{ student.name }} - {{ student.email }} </a></li>
+          {% endfor %}
+    </ul>
+  {% else %}
+
+    <p><b>No classrooms yet...</b></p>
+  {% endif %}
+
 {% else %}
     <p><b>Please log in or sign up first:</b></p>
   <a href="{% url 'log-in' %}">Log In</a> |

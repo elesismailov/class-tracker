@@ -11,7 +11,14 @@ from core.forms import *
 
 
 def students_list(request):
-    pass
+    if request.method == 'GET':
+        try:
+            students = Student.objects.all()
+        except:
+            return render(request, 'students.html', {'data': None})
+        
+        return render(request, 'students.html', {'data': {'students': students}})
+
 
 def create_students(request):
     if request.method == 'GET':
