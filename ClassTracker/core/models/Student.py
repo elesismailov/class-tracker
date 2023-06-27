@@ -19,5 +19,5 @@ class Student(models.Model):
         return self.first_name + ' ' + self.second_name
 
     def __str__(self):
-        return self.name + ' ' + self.email
+        return self.name() + ' ' + self.email
 

@@ -12,8 +12,7 @@ from core.forms import *
 def classrooms_list(request):
     if request.method == 'GET':
         try:
-            classrooms = Classroom.objects.filter(teacher=request.user)
-            print(list(classrooms))
+            classrooms = Classroom.objects.all()
         except:
             return render(request, 'classrooms-all.html', {'data': None})
         
@@ -62,7 +61,13 @@ def edit_classrooms_by_id(request, id):
 
 
 def delete_classrooms_by_id(request, id):
-    pass
+    try:
+        classroom = Classroom.objects.get(id=id)
+        classroom.delete()
+        return redirect('classrooms-all')
+    except:
+        pass
+    return render(request, 'classrooms-by-id.html', {'data': {'classroom': classroom}})
 
 def classrooms_by_id(request, id):
     print(id)
@@ -72,12 +77,12 @@ def classrooms_by_id(request, id):
             try:
                 c = Classroom.objects.get(id=id)
             except:
-                return render(request, 'classroom-by-id.html', {'data': None})
+                return render(request, 'classrooms-by-id.html', {'data': None})
             try:
                 s = Student.objects.filter(classroom=c)
             except:
-                return render(request, 'classroom-by-id.html', {'data': {'classroom': c, 'students': None}})
+                return render(request, 'classrooms-by-id.html', {'data': {'classroom': c, 'students': None}})
             
-            return render(request, 'classroom-by-id.html', {'data': {'classroom': c, 'students': s}})
+            return render(request, 'classrooms-by-id.html', {'data': {'classroom': c, 'students': s}})
         else:
-            return render(request, 'classroom-by-id.html', {'data': None})
+            return render(request, 'classrooms-by-id.html', {'data': None})
