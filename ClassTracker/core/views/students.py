@@ -1,15 +1,13 @@
 from django.shortcuts import render
 
 # Create your views here.
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
 
 from django.shortcuts import render, redirect
 
 from core.models import Classroom, Student
 from core.forms import *
 
-from core.utils.email import notify_student
+from core.utils.email import notify_email
 
 
 def students_list(request):
@@ -32,7 +30,7 @@ def create_students(request):
         if form.is_valid():
             student = form.save()
             
-            notify_student(student, subject='Welcome Letter', body="Welcome to our class!")
+            notify_email([student.email], subject='Welcome Letter', body="Welcome to our class!")
 
             return render(request, 'students-by-id.html', {'data': {'student': student}})
         return render(request, 'students-new.html', {'data': {'form': form}})
@@ -98,4 +96,30 @@ def delete_students_by_id(request, id):
 
     else:
         return redirect('log-in')
-            
+                  
+def email_students_by_id(request, id):
+    if request.method == 'POST':
+        try:
+            student = Student.objects.get(id=id)
+        except:
+            pass
+        # todo handle no object
+
+        notify_email(
+            [student.email],
+            subject=request.POST['subject'],
+            body=request.POST['body']
+            )
+        return render(request, 'students-by-id.html', {'data': {'student': student, 'message': 'Email has been successfully sent!'}})
+
+    elif request.method == 'GET':
+        try:
+            student = Student.objects.get(id=id)
+        except:
+            return render(request, 'email-students-by-id.html', {'data': None})
+    # todo handle no object
+
+        form = EmailStudentForm()
+
+        return render(request, 'email-students-by-id.html', {'data': {'form': form, 'student': student}})
+ 

@@ -1,13 +1,9 @@
-from django.shortcuts import render
-
-# Create your views here.
-from django.urls import reverse_lazy
-from django.views.generic.edit import CreateView
 
 from django.shortcuts import render, redirect
 
 from core.models import *
 from core.forms import *
+from core.utils.email import notify_email
 
 def classrooms_list(request):
     if request.method == 'GET':
@@ -86,3 +82,39 @@ def classrooms_by_id(request, id):
             return render(request, 'classrooms-by-id.html', {'data': {'classroom': c, 'students': s}})
         else:
             return render(request, 'classrooms-by-id.html', {'data': None})
+
+
+def parse_email(e):
+    return e['email']
+          
+def email_classrooms_by_id(request, id):
+    if request.method == 'POST':
+        try:
+            classroom = Classroom.objects.get(id=id)
+            students  = Student.objects.filter(classroom=classroom)
+            query     = students.values('email')
+            emails = map(parse_email, list(query))
+            print(list(emails))
+
+        except:
+            pass
+        # todo handle no object
+
+        notify_email(
+            emails,
+            subject=request.POST['subject'],
+            body=request.POST['body']
+            )
+        return render(request, 'classrooms-by-id.html', {'data': {'classroom': classroom, 'students': students, 'message': 'Email has been successfully sent!'}})
+
+    elif request.method == 'GET':
+        try:
+            classroom = Classroom.objects.get(id=id)
+        except:
+            return render(request, 'classrooms-by-id.html', {'data': None})
+    # todo handle no object
+
+        form = EmailClassroomForm()
+
+        return render(request, 'email-classrooms-by-id.html', {'data': {'form': form, 'classroom': classroom}})
+ 

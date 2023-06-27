@@ -18,6 +18,12 @@ Classroom Students Page
     <hr>
     <a href="{% url 'edit-classrooms-by-id' data.classroom.id %}">🖊️ Edit this classroom</a>
     <a href="{% url 'delete-classrooms-by-id' data.classroom.id %}">🗑️ Delete this classroom</a>
+    <hr>
+    <a href="{% url 'email-classrooms-by-id' data.classroom.id %}"> 📧 Email this classroom</a>
+    
+    {% if data.message %}
+        <p style="color: #6ef231">{{data.message}}</p>
+    {% endif %}
 
 
     <h1>Classroom - {{data.classroom.name}}</h1>

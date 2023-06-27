@@ -14,10 +14,17 @@ Classroom Students Page
     <p><a href="{% url 'create-classrooms' %}">Create Classroom</a></p>
     <hr>
 
+    {% if data.message %}
+        <p style="color: #6ef231">{{data.message}}</p>
+    {% endif %}
+
+
     <p><a href="{% url 'classrooms-by-id' data.student.classroom.id %}">Back to Classroom</a></p>
     <hr>
     <a href="{% url 'edit-students-by-id' data.student.id %}">🖊️ Edit this student</a>
     <a href="{% url 'delete-students-by-id' data.student.id %}">🗑️ Delete this student</a>
+    <hr>
+    <a href="{% url 'email-students-by-id' data.student.id %}"> 📧 Email this student</a>
 
     <h2>Student Info:</h2>
     <p><b>Name: {{data.student.name}}</b></p>
