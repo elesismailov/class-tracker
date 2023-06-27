@@ -24,7 +24,7 @@ def create_classrooms(request):
         if form.is_valid():
             classroom = form.save()
             print(classroom)
-            return render(request, 'classroom-by-id.html', {'data': {'classroom': classroom}})
+            return render(request, 'classrooms-by-id.html', {'data': {'classroom': classroom}})
         return render(request, 'classroom-new.html', {'data': {'form': form}})
         
 

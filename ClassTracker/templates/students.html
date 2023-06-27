@@ -13,7 +13,7 @@ Teacher's Students Page
   {% if data %}
     <ul>
       {% for student in data.students %}
-          <li><a href="{% url 'students-by-id' student.id %}">{{ student.classroom.name }} - {{ student.name }} - {{ student.email }} </a></li>
+          <li><a href="{% url 'students-by-id' student.id %}">😃 {{ student.classroom.name }} - {{ student.name }} - {{ student.email }} </a></li>
           {% endfor %}
     </ul>
   {% else %}

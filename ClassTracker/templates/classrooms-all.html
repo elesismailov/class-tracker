@@ -14,7 +14,7 @@ Teacher's Students Page
   {% if data %}
     <ul>
       {% for c in data %}
-          <li><a href="{% url 'classrooms-by-id' c.id %}">{{ c.name }} - {{ c.teacher.name }}</a></li>
+          <li><a href="{% url 'classrooms-by-id' c.id %}">◧ {{ c.name }} - {{ c.teacher.name }}</a></li>
           {% endfor %}
     </ul>
   {% else %}

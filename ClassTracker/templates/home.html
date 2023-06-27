@@ -1,17 +1,17 @@
 
 {% extends 'base.html' %}
 {% block title %}
-Teacher Home Page
+🏠 Teacher Home Page
 {% endblock %}
 
 {% block content %}
-<h1>Home Page</h1>
+<h1>🏠 Home Page</h1>
 {% if user.is_authenticated %}
 
   {%  include 'links.html' %}
 
-  <p><a href="{% url 'students' %}">Students</a></p>
-  <p><a href="{% url 'classrooms-all' %}">Classrooms</a></p>
+  <p><a href="{% url 'students' %}">😃 Students</a></p>
+  <p><a href="{% url 'classrooms-all' %}">◧ Classrooms</a></p>
 {% else %}
   <a href="{% url 'log-in' %}">Log In</a> |
   <a href="{% url 'sign-up' %}">Sign Up</a>

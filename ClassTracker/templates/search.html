@@ -1,11 +1,11 @@
 
 {% extends 'base.html' %}
 {% block title %}
-Search Page
+🔍 Search Page
 {% endblock %}
 
 {% block content %}
-<h1>Search</h1>
+<h1>🔍 Search</h1>
 {% if user.is_authenticated %}
 
     {%  include 'links.html' %}
@@ -21,7 +21,7 @@ Search Page
     {% elif data.students %}
         <p style="color: #636363">We got a match! ⬇️</p>
         <ul>{% for s in data.students %}
-            <li><a href="{% url 'students-by-id' s.id %}">{{ s.name }} - {{ s.email }} </a></li>
+            <li><a href="{% url 'students-by-id' s.id %}">😃 {{ s.name }} - {{ s.email }} </a></li>
         {% endfor %}
         </ul>
     {% endif %}
