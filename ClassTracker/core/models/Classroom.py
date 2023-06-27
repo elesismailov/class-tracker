@@ -9,5 +9,5 @@ class Classroom(models.Model):
     school = models.ForeignKey('School', on_delete=models.CASCADE)
 
     def __str__(self):
-        return self.name + ' ' + self.teacher.name()
+        return self.name + ' by ' + self.teacher.name()
 

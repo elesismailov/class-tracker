@@ -8,7 +8,10 @@ urlpatterns = [
     path('', TemplateView.as_view(template_name='home.html'), name='home'),
 
     path('classrooms/<str:id>/', classrooms_by_id, name='classrooms-by-id'),
+    path('classrooms/<str:id>/edit', edit_classrooms_by_id, name='edit_classrooms-by-id'),
+    path('classrooms/<str:id>/delete', delete_classrooms_by_id, name='delete_classrooms-by-id'),
     path('classrooms-all/', classrooms_list, name='classrooms-all'),
+    path('classrooms-new/', create_classrooms, name='create-classrooms'),
 
     path('students-new/', create_students, name='create-students'),
     path('students/', students_list, name='students'),

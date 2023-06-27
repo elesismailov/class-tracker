@@ -35,6 +35,7 @@ def students_by_id(request, id):
             try:
                 student = Student.objects.get(id=id)
             except:
+        # todo handle no object
                 pass
 
             return render(request, 'students-by-id.html', {'data': {'student': student}})
@@ -49,6 +50,7 @@ def edit_students_by_id(request, id):
                 student = Student.objects.get(id=id)
             except:
                 pass
+        # todo handle no object
 
             form = StudentChangeForm(request.POST, instance=student)
             if form.is_valid():
@@ -62,7 +64,9 @@ def edit_students_by_id(request, id):
             try:
                 student = Student.objects.get(id=id)
             except:
-                pass
+                return render(request, 'edit-students-by-id.html', {'data': None})
+        # todo handle no object
+
             form = StudentChangeForm(instance=student)
 
             return render(request, 'edit-students-by-id.html', {'data': {'form': form, 'student': student}})
