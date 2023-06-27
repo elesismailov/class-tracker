@@ -7,3 +7,7 @@ class Classroom(models.Model):
     teacher = models.ForeignKey('Teacher', on_delete=models.CASCADE)
 
     school = models.ForeignKey('School', on_delete=models.CASCADE)
+
+    def __str__(self):
+        return self.name + ' ' + self.teacher.name()
+

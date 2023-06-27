@@ -6,13 +6,13 @@ class TeacherSignUpForm(UserCreationForm):
 
     class Meta(UserCreationForm):
         model = Teacher
-        fields = ('username', 'email', 'phone_number', 'subject_name')
+        fields = ('first_name', 'second_name', 'username', 'email', 'phone_number', 'subject_name')
 
 class TeacherChangeForm(UserChangeForm):
 
     class Meta(UserChangeForm):
         model = Teacher
-        fields = ('phone_number', 'subject_name')
+        fields = ('first_name', 'second_name', 'username', 'email', 'phone_number', 'subject_name')
 
 class TeacherLogInForm(forms.Form):
     phone_number = forms.CharField()

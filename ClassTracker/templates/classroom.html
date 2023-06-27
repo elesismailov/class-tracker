@@ -5,16 +5,20 @@ Classroom Students Page
 {% endblock %}
 
 {% block content %}
-<h1>Classroom:</h1>
 {% if user.is_authenticated and data %}
 
     <p><a href="{% url 'log-out' %}">Log Out</a></p>
-    <p><b>Classroom name - {{data.classroom.name}}</b></p>
+    <p><a href="{% url 'create-students' %}">Create Student</a></p>
+    <p><a href="{% url 'create-classrooms' %}">Create Classroom</a></p>
+    <hr>
+
+
+    <h1>Classroom - {{data.classroom.name}}</h1>
 
     <h2>List of students:</h2>
     {% if data.students %}
         <ul>{% for s in data.students %}
-            <li><a href="{% url 'students-by-id' s.id %}">Student {{ s.name }} {{ s.email }} </a></li>
+            <li><a href="{% url 'students-by-id' s.id %}">{{ s.name }} - {{ s.email }} </a></li>
         {% endfor %}
         </ul>
     {% else %}

@@ -1,0 +1,25 @@
+
+{% extends 'base.html' %}
+{% block title %}
+Classroom Students Page
+{% endblock %}
+
+{% block content %}
+<h1>Create Student</h1>
+{% if user.is_authenticated and data %}
+
+    <p><a href="{% url 'log-out' %}">Log Out</a></p>
+    <hr>
+
+    <form method="post">
+        {% csrf_token %}
+        {{ data.form.as_p }}
+        <button type="submit">Create</button>
+    </form>
+ 
+{% else %}
+    <p><b>Please log in or sign up first:</b></p>
+    <a href="{% url 'log-in' %}">Log In</a> |
+    <a href="{% url 'sign-up' %}">Sign Up</a>
+{% endif %}
+{% endblock %}

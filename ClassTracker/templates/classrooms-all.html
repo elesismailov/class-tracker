@@ -9,6 +9,10 @@ Teacher's Students Page
 <h1>All Classrooms List</h1>
 {% if user.is_authenticated %}
   <p><a href="{% url 'log-out' %}">Log Out</a></p>
+  <p><a href="{% url 'create-students' %}">Create Student</a></p>
+  <p><a href="{% url 'create-classrooms' %}">Create Classroom</a></p>
+  <hr>
+
 
   {% if data %}
     <ul>

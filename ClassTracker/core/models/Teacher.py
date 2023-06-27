@@ -52,3 +52,9 @@ class Teacher(AbstractUser):
 
     objects = CustomUserManager()
 
+    def name(self):
+        return self.first_name + ' ' + self.second_name
+
+    def __str__(self):
+        return self.name() + ' ' + self.phone_number
+
