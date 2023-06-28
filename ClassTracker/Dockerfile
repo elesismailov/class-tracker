@@ -14,8 +14,8 @@ ENV EMAIL_HOST='smtp.gmail.com'
 ENV EMAIL_PORT=587
 ENV EMAIL_USE_TLS=True
  
-ENV EMAIL_HOST_USER='tester@email.com'
-ENV EMAIL_HOST_PASSWORD='testers_password1234'
+ENV EMAIL_HOST_USER='your@email.com'
+ENV EMAIL_HOST_PASSWORD='your_password'
 
 
 # RUN mkdir /app
