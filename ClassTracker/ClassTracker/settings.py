@@ -9,6 +9,7 @@ import os
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
+# print(env('TEST_ENV_VAR'))
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
@@ -84,11 +85,11 @@ WSGI_APPLICATION = 'ClassTracker.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': env("DB_NAME"),
-        'USER': env("DB_USER"),
-        'PASSWORD': env("DB_PASSWORD"),
-        'HOST': env("DB_HOST"),
-        'PORT': env("DB_PORT"),
+        "NAME": "class-tracker",
+        "USER": "postgres",
+        "PASSWORD": "1234",
+        "HOST": "db",
+        "PORT": 5432,
     }
 }
 

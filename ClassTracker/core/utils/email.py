@@ -6,9 +6,9 @@ def notify_email(emails, subject, body):
     send_mail(
         subject        = subject,
         message        = body,
-        from_email     = settings.EMAIL_HOST_USER,
-        auth_user      = settings.EMAIL_HOST_USER,
-        auth_password  = settings.EMAIL_HOST_PASSWORD,
+        from_email     = settings.env.str('EMAIL_HOST_USER'),
+        auth_user      = settings.env.str('EMAIL_HOST_USER'),
+        auth_password  = settings.env.str('EMAIL_HOST_PASSWORD'),
         recipient_list = emails,
         fail_silently  = True,
         )
